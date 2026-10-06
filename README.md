@@ -1,2 +1,11 @@
 # autodiff-and-mastermind
-Personal projects on learning neural nets and implementing mastermind
+
+Enclosed are several projects.
+
+First, in the subfolder 'mm', we have a C++ mastermind solver that I wrote around 2012. It is written in C++ and uses an entropy-based approach to making the next guess. It averages 4.373 guesses, which is close to, but does not quite achieve, Koyama and Lai's optimal average of 4.3403. Its worst-case is 6 (while 5 is achievable). The C++ here uses a deprecated function or two, but it still compiles in g++ with no extra flags as of October 2026. Compile with g++ -O3 -o mm mm.cpp comb.cpp player.cpp
+
+Next, we have various small programs I wrote in 2026 while beginning to learn machine learning. First, l1.py is a python-based autodiff and neural network that implements a moon-classifier. It was also my first Python program of any length. It was written with some assistance from Claude: I would have Claude describe an algorithm / class and what the interface should be, and I would then write it in python, looking up language features myself to carry out the implementation. Claude then helped more during debugging (although only after it was fully working did I paste the whole program to Claude). It works reasonably well and includes graphical output (written by Claude).
+
+Next, we have l1.cpp. While writing l1.py, I became interested in how to implement autodiff and the scalar neural network in C++, so I did so from scratch, with much less initial help from Claude (since I know C++ well, and now also understood the algorithms; Claude did write make_moons, since I did not want to spend time thinking about that auxiliary problem). After debugging (with Claude), it worked quite well, and (with -O3 on g++) ran about 35 times faster than the python.
+
+I then became interested in whether I could use this neural network to grade mastermind guesses. I tried for quite awhile -- see mm.cpp -- and the answer is essentially no. Nevertheless, I learned many interesting things while debugging this program with Claude. (The file here is only the latest in a long list of things I tried.) We ran into severe overfitting, tried engineering stepsize, tried to diagnose possible loss landscape pathologies, hypothesized that some rare guess types were too absent from the training data, tried different loss functions, and considered various other causes for the totally unacceptable performance. Ultimately, I concluded that it was best to move on from Mastermind until I get farther in my neural-network learning.
